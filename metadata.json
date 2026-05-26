@@ -1,0 +1,6 @@
+{
+  "name": "Simulador Ademicon",
+  "description": "Funil inteligente de consórcios e planejamento financeiro da Ademicon. Simule cartas de crédito para imóveis, automóveis e investimentos com lance embutido.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
