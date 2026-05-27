@@ -9,13 +9,13 @@ interface NotificationItem {
 }
 
 const CONVERSION_MOCKS: NotificationItem[] = [
-  { name: 'Lucas Pinheiro', location: 'Balneário Camboriú/SC', action: 'acabou de simular consórcio imobiliário de R$ 350.000', timeAgo: 'agora mesmo' },
-  { name: 'Juliana Sampaio', location: 'Ribeirão Preto/SP', action: 'garantiu cota com taxa reduzida para seu carro zero', timeAgo: 'há 1 min' },
-  { name: 'Pedro Henrique G.', location: 'Goiânia/GO', action: 'simulou cronograma com Lance Embutido de 30%', timeAgo: 'agora mesmo' },
-  { name: 'Gabriela Vasconcelos', location: 'Recife/PE', action: 'simulou uso do FGTS para sua nova casa própria', timeAgo: 'há 2 min' },
-  { name: 'Marcos André', location: 'Niterói/RJ', action: 'acaba de simular troca de financiamento abusivo por cota Ademicon', timeAgo: 'há 3 min' },
-  { name: 'Fernanda Lima', location: 'Porto Alegre/RS', action: 'simulou carta de crédito imobiliária de R$ 600.000', timeAgo: 'agora mesmo' },
-  { name: 'Thiago Martins', location: 'Belo Horizonte/MG', action: 'simulou plano de parcelas sem juros para veículo SUV', timeAgo: 'há 1 min' }
+  { name: 'Lucas Pinheiro', location: 'Balneário Camboriú/SC', action: 'acabou de receber pré-aprovação de alavancagem imobiliária', timeAgo: 'agora mesmo' },
+  { name: 'Juliana Sampaio', location: 'Ribeirão Preto/SP', action: 'garantiu liberação estratégica de recurso para veículo zero', timeAgo: 'há 1 min' },
+  { name: 'Pedro Henrique G.', location: 'Goiânia/GO', action: 'configurou cronograma de aporte embutido acelerado', timeAgo: 'agora mesmo' },
+  { name: 'Gabriela Vasconcelos', location: 'Recife/PE', action: 'mapeou resgate estratégico de fundos para nova residência', timeAgo: 'há 2 min' },
+  { name: 'Marcos André', location: 'Niterói/RJ', action: 'acaba de planejar substituição de financiamento bancário abusivo', timeAgo: 'há 3 min' },
+  { name: 'Fernanda Lima', location: 'Porto Alegre/RS', action: 'simulou recebimento patrimonial de R$ 600.000', timeAgo: 'agora mesmo' },
+  { name: 'Thiago Martins', location: 'Belo Horizonte/MG', action: 'simulou parcelas limpas sem armadilhas do mercado para veículo SUV', timeAgo: 'há 1 min' }
 ];
 
 export const NotificationToast: React.FC = () => {

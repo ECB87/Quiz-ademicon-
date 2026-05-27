@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { QuizOption, QuizStep, FunnelSettings } from './types';
 import { QUIZ_STEPS, DEFAULT_SETTINGS, FAQ_ITEMS } from './data';
 import { LucideIcon } from './components/LucideIcon';
-import { AdminPanel } from './components/AdminPanel';
 import { NotificationToast } from './components/NotificationToast';
 import { FaqSection } from './components/FaqSection';
 import { SocialFeedback } from './components/SocialFeedback';
@@ -15,18 +14,17 @@ export default function App() {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
 
-  // Settings state loading from localStorage if present
-  const [settings, setSettings] = useState<FunnelSettings>(() => {
-    const saved = localStorage.getItem('funnel_settings_v1');
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        console.error('Falha ao restaurar configurações', e);
-      }
+  // Settings state loaded directly from default configuration, ignoring stale user configs
+  const [settings, setSettings] = useState<FunnelSettings>(DEFAULT_SETTINGS);
+
+  // Clear stale localStorage key on mount
+  useEffect(() => {
+    try {
+      localStorage.removeItem('funnel_settings_v1');
+    } catch (e) {
+      console.warn(e);
     }
-    return DEFAULT_SETTINGS;
-  });
+  }, []);
 
   // Urgency State
   const [spotsLeft, setSpotsLeft] = useState(settings.spotsCount);
@@ -35,10 +33,10 @@ export default function App() {
   // Analyzing state loaders
   const [checkingProgress, setCheckingProgress] = useState(0);
   const [checksList, setChecksList] = useState([
-    { text: 'Analisando dados do bem ou crédito desejado...', status: 'loading' },
+    { text: 'Analisando dados do bem ou patrimônio desejado...', status: 'loading' },
     { text: 'Verificando limites de parcelas vs. orçamento do perfil...', status: 'pending' },
-    { text: 'Mapeando os grupos Ademicon com maiores índices de contemplação...', status: 'pending' },
-    { text: 'Buscando cotas promocionais com lance embutido ativo...', status: 'pending' }
+    { text: 'Mapeando canais de planejamento fechados com maiores taxas de liberação...', status: 'pending' },
+    { text: 'Buscando bônus de alavancagem embutidos e lotes prioritários...', status: 'pending' }
   ]);
 
   // Sync settings when modified
@@ -138,10 +136,10 @@ export default function App() {
     setCheckingProgress(0);
     setSelectedOptionId(null);
     setChecksList([
-      { text: 'Analisando dados do bem ou crédito desejado...', status: 'loading' },
+      { text: 'Analisando dados do bem ou patrimônio desejado...', status: 'loading' },
       { text: 'Verificando limites de parcelas vs. orçamento do perfil...', status: 'pending' },
-      { text: 'Mapeando os grupos Ademicon com maiores índices de contemplação...', status: 'pending' },
-      { text: 'Buscando cotas promocionais com lance embutido ativo...', status: 'pending' }
+      { text: 'Mapeando canais de planejamento fechados com maiores taxas de liberação...', status: 'pending' },
+      { text: 'Buscando bônus de alavancagem embutidos e lotes prioritários...', status: 'pending' }
     ]);
     setScreen('quiz');
   };
@@ -253,10 +251,10 @@ export default function App() {
               <div className="md:col-span-6 space-y-6">
                 <div className="space-y-2">
                   <h3 className="text-lg font-black tracking-wider text-rose-500 uppercase font-sans">
-                    Planejamento Patrimonial Sem Juros
+                    Planejamento Patrimonial Seguro e Sem Juros
                   </h3>
-                  <p className="text-xs text-neutral-300 leading-relaxed font-sans">
-                    Diga adeus à armadilha dos juros abusivos dos financiamentos bancários convencionais. O Consórcio Ademicon oferece parcelas amigáveis ajustadas ao seu bolso, lances embutidos atrativos usando parte do próprio crédito, redução de taxas administrativas e caminhos mapeados para acelerar a sua contemplação e conquista definitiva.
+                  <p className="text-xs text-neutral-300 leading-relaxed font-sans mt-2">
+                    Esqueça o peso das parcelas infinitas e dos juros altos dos financiamentos bancários de 30 anos. Nosso método inteligente de planejamento ajuda você a simular mensalidades justas que cabem no seu bolso real, trazendo caminhos saudáveis de aceleração e resgate para a sua casa própria, automóvel ou investimentos, sempre preservando as suas economias pessoais.
                   </p>
                 </div>
 
@@ -441,7 +439,7 @@ export default function App() {
                 Qualificando Seu Perfil...
               </h2>
               <p className="text-xs text-neutral-400 mb-8 max-w-xs mx-auto">
-                Aguarde alguns segundos enquanto computamos suas respostas de rentabilidade com o estoque disponível de cotas orientadoras.
+                Aguarde alguns segundos enquanto computamos suas respostas de viabilidade com as disponibilidades de lotes de liberação secreta.
               </p>
 
               {/* Live Checks List */}
@@ -490,7 +488,7 @@ export default function App() {
                 COMPATIBILIDADE DE PERFIL DE 98.4% CONFIRMADA!
               </h1>
               <p className="text-xs text-neutral-400 max-w-sm mx-auto">
-                Parabéns! Suas metas alinham-se perfeitamente com o ecossistema ativo de cotas rápidas.
+                Parabéns! Suas metas alinham-se perfeitamente com as diretrizes e lotes prioritários selecionados.
               </p>
             </div>
 
@@ -583,10 +581,10 @@ export default function App() {
                     </div>
                     
                     <h3 className="text-lg font-black tracking-tight text-white leading-tight uppercase font-sans">
-                      LIBERAR CRONOGRAMA DE CONTEMPLAÇÃO!
+                      VER MEU PLANEJAMENTO DE CRÉDITO!
                     </h3>
                     <p className="text-[11px] text-neutral-400 leading-relaxed font-sans mt-2">
-                      Sua simulação foi gerada com sucesso! Clique no botão oficial abaixo para enviá-la ao WhatsApp do Consultor Autorizado Ademicon e receber as opções sob medida de lances e parcelas imbatíveis sem compromisso.
+                      A sua estimativa de parcelas e caminhos de economia foi gerada com sucesso! Para sua segurança e comodidade, clique no botão abaixo para enviar o resumo diretamente ao nosso especialista via WhatsApp. Ele vai liberar o seu acesso gratuito à planilha de simulações, apresentar as melhores parcelas reduzidas e tirar todas as suas dúvidas na hora.
                     </p>
 
                     <div className="pt-2">
@@ -615,7 +613,7 @@ export default function App() {
                 <div className="bg-neutral-950/40 border border-neutral-900 rounded-xl p-4 space-y-2.5">
                   <div className="flex items-center gap-2 text-xs text-neutral-300">
                     <span className="h-2 w-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
-                    <span>Assessoria direta personalizada autorizada Ademicon</span>
+                    <span>Assessoria credenciada e regulada sob normas do Banco Central</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs text-neutral-300">
                     <span className="h-2 w-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
@@ -651,19 +649,14 @@ export default function App() {
       {/* Floating real-time conversion notifier standard */}
       <NotificationToast />
 
-      {/* Admin Panel Toggle for user configurations */}
-      <AdminPanel
-        settings={settings}
-        onSave={handleSaveSettings}
-        onReset={handleResetSettings}
-      />
+      {/* Admin Panel Toggle completely disabled as requested to hide control gear */}
 
       {/* Footer copyright */}
       <footer id="footer-details" className="border-t border-neutral-900 py-10 text-center text-neutral-500 text-[10px] tracking-wide max-w-5xl mx-auto w-full px-4 relative mt-auto">
         <div className="max-w-md mx-auto space-y-4">
           <p>© 2026 {settings.nicheTitle}. Todos os direitos reservados.</p>
           <p className="leading-relaxed font-sans">
-            Aviso Legal: Os resultados das simulações dependem da modalidade de grupo escolhida e de assembleias periódicas. O consórcio Ademicon é devidamente autorizado e fiscalizado pelo Banco Central do Brasil.
+            Aviso Legal: Os resultados das simulações baseiam-se em planejamento de alavancagem de longo prazo. O ecossistema operacional de crédito parceiro é devidamente regulado e fiscalizado sob normas oficiais do Banco Central do Brasil.
           </p>
           <div className="flex items-center justify-center gap-4 text-neutral-400 uppercase tracking-widest font-mono">
             <span className="hover:text-white transition-colors cursor-pointer">Termos de Uso</span>
