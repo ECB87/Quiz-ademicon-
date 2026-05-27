@@ -20,6 +20,7 @@ export interface QuizStep {
   sliderPrefix?: string;
   sliderSuffix?: string;
   defaultValue?: number | string;
+  stepTitle?: string;
 }
 
 export interface Testimonial {
@@ -48,4 +49,5 @@ export interface FunnelSettings {
   cooldownMinutes: number;
   spotsCount: number;
   scarcityMessage: string;
+  webhookUrl?: string;
 }
