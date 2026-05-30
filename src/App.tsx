@@ -486,7 +486,7 @@ export default function App() {
                   <button
                     id="cta-start-quiz"
                     onClick={() => setScreen('gate')}
-                    className="w-full bg-red-600 hover:bg-red-700 text-white p-4.5 rounded-xl font-black text-sm tracking-widest uppercase shadow-lg shadow-red-600/30 transition-all active:scale-98 select-none hover:scale-102 flex items-center justify-center gap-2 border border-red-500/20 cursor-pointer animate-pulse"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-4.5 rounded-xl font-black text-sm tracking-widest uppercase shadow-lg shadow-emerald-600/30 transition-all active:scale-98 select-none hover:scale-102 flex items-center justify-center gap-2 border border-emerald-500/20 cursor-pointer animate-pulse"
                   >
                     <span>{settings.ctaText}</span>
                     <LucideIcon name="ArrowRight" className="h-4 w-4" />
